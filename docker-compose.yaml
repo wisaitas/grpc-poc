@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - grpc-network
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      
+  domain:
+    build:
+      context: .
+      dockerfile: deployment/docker/golang/Dockerfile
+      args:
+        SERVICE_NAME: domain
+    ports:
+      - "50051:50051"
+    networks:
+      - grpc-network
+  
+  gateway:
+    build:
+      context: .
+      dockerfile: deployment/docker/golang/Dockerfile
+      args:
+        SERVICE_NAME: gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - grpc-network
+      
+  orchestrator:
+    build:
+      context: .
+      dockerfile: deployment/docker/golang/Dockerfile
+      args:
+        SERVICE_NAME: orchestrator
+    ports:
+      - "50052:50052"
+    networks:
+      - grpc-network
+
+networks:
+  grpc-network:
+    driver: bridge
