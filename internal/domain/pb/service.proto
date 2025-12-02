@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/wisaitas/grpc-poc/internal/domain/pb/gen;pbgen";
+
+import "internal/domain/pb/user.proto";
+
+service DomainService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUserList (GetUserListRequest) returns (GetUserListResponse);
+}
+
+

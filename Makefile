@@ -1,4 +1,4 @@
-.PHONY: rundomain runorchestrator rungateway test
+.PHONY: rundomain runorchestrator rungateway test proto
 
 rundomain:
 	go run cmd/domain/main.go
@@ -11,3 +11,14 @@ rungateway:
 
 test:
 	curl "http://localhost:8080/api/data?id=123"
+
+proto:
+	mkdir -p internal/domain/pb/gen
+	rm -f internal/domain/pb/gen/*.go
+	rm -f internal/domain/pb/*.pb.go
+	
+	protoc --proto_path=. \
+		--go_out=. --go_opt=module=github.com/wisaitas/grpc-poc \
+		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
+		internal/domain/pb/user.proto \
+		internal/domain/pb/service.proto

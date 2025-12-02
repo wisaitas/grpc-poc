@@ -13,17 +13,7 @@ type client struct {
 }
 
 func newClient() *client {
-	postgres, err := postgres.NewPostgreSQL(postgres.Config{
-		Host:            domain.Config.Postgres.Host,
-		Port:            domain.Config.Postgres.Port,
-		User:            domain.Config.Postgres.User,
-		Password:        domain.Config.Postgres.Password,
-		DBName:          domain.Config.Postgres.DBName,
-		SSLMode:         domain.Config.Postgres.SSLMode,
-		MaxIdleConns:    domain.Config.Postgres.MaxIdleConns,
-		MaxOpenConns:    domain.Config.Postgres.MaxOpenConns,
-		ConnMaxLifetime: domain.Config.Postgres.ConnMaxLifetime,
-	})
+	postgres, err := postgres.NewPostgreSQL(domain.Config.Postgres.Config)
 	if err != nil {
 		log.Fatalln(err)
 	}
