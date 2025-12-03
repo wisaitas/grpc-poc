@@ -4,14 +4,14 @@ import (
 	appRepository "github.com/wisaitas/grpc-poc/internal/domain/repository"
 )
 
-type repository struct {
-	userRepository        appRepository.UserRepository
-	userHistoryRepository appRepository.UserHistoryRepository
+type Repository struct {
+	UserRepository        appRepository.UserRepository
+	UserHistoryRepository appRepository.UserHistoryRepository
 }
 
-func newRepository(client *client) *repository {
-	return &repository{
-		userRepository:        appRepository.NewUserRepository(client.postgres),
-		userHistoryRepository: appRepository.NewUserHistoryRepository(client.postgres),
+func newRepository(client *client) *Repository {
+	return &Repository{
+		UserRepository:        appRepository.NewUserRepository(client.postgres),
+		UserHistoryRepository: appRepository.NewUserHistoryRepository(client.postgres),
 	}
 }

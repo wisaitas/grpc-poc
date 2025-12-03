@@ -7,16 +7,14 @@ import (
 
 	"github.com/caarlos0/env/v11"
 	"github.com/joho/godotenv"
-	"github.com/wisaitas/grpc-poc/internal/domain"
-	"github.com/wisaitas/grpc-poc/internal/domain/handler" // เปลี่ยนจาก router เป็น handler
-	userCreate "github.com/wisaitas/grpc-poc/internal/domain/usecase/user/create"
-	userGetList "github.com/wisaitas/grpc-poc/internal/domain/usecase/user/getlist"
+	"github.com/wisaitas/grpc-poc/internal/domain" // เปลี่ยนจาก router เป็น handler
 	"github.com/wisaitas/grpc-poc/pkg/db/postgres"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func init() {
-	if err := godotenv.Load(); err != nil {
+	if err := godotenv.Load("./domain.env"); err != nil {
 		log.Println(err)
 	}
 
@@ -34,18 +32,13 @@ func New() *App {
 	client := newClient()
 	sdk := newSDK()
 	repository := newRepository(client)
-	usecase := newUsecase(repository)
+	useCase := newUseCase(sdk, repository)
 
-	// 1. เตรียม UseCase Handlers
-	createHandler := userCreate.NewHandler(usecase.userCreateService, sdk.validatorx)
-	getListHandler := userGetList.NewHandler(usecase.userGetListService)
-
-	// 2. สร้าง gRPC Handler (เดิมคือ Router)
-	appHandler := handler.NewHandler(createHandler, getListHandler)
-
-	// 3. สร้าง gRPC Server และ Register
 	grpcServer := grpc.NewServer()
-	appHandler.Register(grpcServer)
+	useCase.Register(grpcServer)
+
+	// for postman to see methods
+	reflection.Register(grpcServer)
 
 	return &App{
 		client: client,
@@ -59,13 +52,18 @@ func (a *App) Start() {
 		log.Fatalln(err)
 	}
 
+	log.Printf("domain service listening on port %s", domain.Config.Service.Port)
 	if err := a.server.Serve(listen); err != nil {
 		log.Fatalln(err)
 	}
 }
 
-func (a *App) Close() {
+func (a *App) Stop() {
 	if err := postgres.Close(a.client.postgres); err != nil {
 		log.Fatalln(err)
 	}
+
+	a.server.GracefulStop()
+
+	log.Println("domain service stopped")
 }

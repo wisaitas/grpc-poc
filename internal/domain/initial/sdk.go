@@ -2,12 +2,12 @@ package initial
 
 import "github.com/wisaitas/grpc-poc/pkg/validatorx"
 
-type sdk struct {
-	validatorx validatorx.Validator
+type SDK struct {
+	Validatorx validatorx.Validator
 }
 
-func newSDK() *sdk {
-	return &sdk{
-		validatorx: validatorx.NewValidator(),
+func newSDK() *SDK {
+	return &SDK{
+		Validatorx: validatorx.NewValidator(),
 	}
 }

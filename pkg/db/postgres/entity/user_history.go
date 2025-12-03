@@ -10,3 +10,7 @@ type UserHistory struct {
 	UserID uuid.UUID `gorm:"column:user_id;type:uuid"`
 	Action string    `gorm:"column:action;type:varchar(255);not null"`
 }
+
+func (UserHistory) TableName() string {
+	return "tbl_user_histories"
+}

@@ -1,38 +1,22 @@
 package main
 
-// import (
-// 	"context"
-// 	"fmt"
-// 	"log"
-// 	"net"
+import (
+	"os"
+	"os/signal"
+	"syscall"
 
-// 	"github.com/wisaitas/grpc-poc/pb"
-// 	"google.golang.org/grpc"
-// )
+	"github.com/wisaitas/grpc-poc/internal/domain/initial"
+)
 
-// type domainServer struct {
-// 	pb.UnimplementedDomainServiceServer
-// }
+func main() {
+	app := initial.New()
+	defer app.Stop()
 
-// func (s *domainServer) GetData(ctx context.Context, req *pb.DataRequest) (*pb.DataResponse, error) {
-// 	log.Printf("Domain received request for ID: %s", req.Id)
-// 	return &pb.DataResponse{
-// 		Result:      fmt.Sprintf("Data for ID %s", req.Id),
-// 		FromService: "Domain",
-// 	}, nil
-// }
+	go func() {
+		app.Start()
+	}()
 
-// func main() {
-// 	lis, err := net.Listen("tcp", ":50051")
-// 	if err != nil {
-// 		log.Fatalf("failed to listen: %v", err)
-// 	}
-
-// 	s := grpc.NewServer()
-// 	pb.RegisterDomainServiceServer(s, &domainServer{})
-
-// 	log.Println("Domain Service listening on :50051")
-// 	if err := s.Serve(lis); err != nil {
-// 		log.Fatalf("failed to serve: %v", err)
-// 	}
-// }
+	quit := make(chan os.Signal, 1)
+	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	<-quit
+}

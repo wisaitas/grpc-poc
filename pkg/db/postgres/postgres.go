@@ -57,7 +57,7 @@ func NewPostgreSQL(config Config) (*gorm.DB, error) {
 	sqlDB.SetMaxOpenConns(config.MaxOpenConns)
 	sqlDB.SetConnMaxLifetime(config.ConnMaxLifetime)
 
-	fmt.Printf("[postgres] connected to postgres: Host=%s, Port=%s, User=%s, DB=%s\n", config.Host, config.Port, config.User, config.DBName)
+	fmt.Printf("[postgres] connected to postgres: host=%s, port=%s, user=%s, db=%s\n", config.Host, config.Port, config.User, config.DBName)
 
 	return db, nil
 }

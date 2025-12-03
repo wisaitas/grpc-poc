@@ -9,3 +9,7 @@ type User struct {
 	Email     string `gorm:"column:email;type:varchar(255);not null"`
 	Password  string `gorm:"column:password;type:varchar(255);not null"`
 }
+
+func (User) TableName() string {
+	return "tbl_users"
+}
