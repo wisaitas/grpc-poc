@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgen";
+
+message RegisterRequest {
+    string email = 1;
+    string password = 2;
+    string confirm_password = 3;
+}
+
+message RegisterResponse {
+    string token = 1;
+}

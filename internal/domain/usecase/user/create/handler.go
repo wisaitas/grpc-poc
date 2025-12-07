@@ -22,14 +22,21 @@ func NewHandler(
 	}
 }
 
-func (h *Handler) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
-	if err := h.validateRequest(req); err != nil {
+func (h *Handler) CreateUser(ctx context.Context, proto *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
+	req, err := h.validateRequest(proto)
+	if err != nil {
 		return nil, err
 	}
 
 	return h.service.CreateUser(ctx, req)
 }
 
-func (h *Handler) validateRequest(req *pb.CreateUserRequest) error {
-	return h.validatorx.ValidateStruct(req)
+func (h *Handler) validateRequest(proto *pb.CreateUserRequest) (*CreateUserRequest, error) {
+	createUserRequest := mapProtoToRequest(proto)
+
+	if err := h.validatorx.ValidateStruct(createUserRequest); err != nil {
+		return nil, err
+	}
+
+	return createUserRequest, nil
 }

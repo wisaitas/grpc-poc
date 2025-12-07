@@ -18,6 +18,76 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:latest
+    command: ["--config=/etc/otel-collector-config.yaml"]
+    volumes:
+      - ./deployment/docker/otel/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317"   # OTLP gRPC receiver
+      - "4318:4318"   # OTLP HTTP receiver
+      - "8889:8889"   # Prometheus metrics exporter
+    networks:
+      - grpc-network
+    depends_on:
+      - tempo
+      - loki
+
+  # Tempo - สำหรับเก็บ traces
+  tempo:
+    image: grafana/tempo:latest
+    user: "0" # root
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./deployment/docker/tempo/tempo-config.yaml:/etc/tempo.yaml
+      - tempo_data:/tmp/tempo
+    ports:
+      - "3200:3200"   # tempo query
+      - "4317"        # otlp grpc (internal)
+    networks:
+      - grpc-network
+
+  # Loki - สำหรับเก็บ logs
+  loki:
+    image: grafana/loki:latest
+    user: "0"  # root
+    command: ["-config.file=/etc/loki/loki-config.yaml"]
+    volumes:
+      - ./deployment/docker/loki/loki-config.yaml:/etc/loki/loki-config.yaml
+      - loki_data:/loki
+    ports:
+      - "3100:3100"
+    networks:
+      - grpc-network
+
+  # Grafana - สำหรับ visualization
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+    volumes:
+      - ./deployment/docker/grafana/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+    ports:
+      - "3000:3000"
+    networks:
+      - grpc-network
+    depends_on:
+      - tempo
+      - loki
+
+  # Prometheus - สำหรับ metrics (optional แต่แนะนำ)
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./deployment/docker/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - grpc-network
 
   # domain:
   #   build:
@@ -58,3 +128,6 @@ networks:
 
 volumes:
   postgres_data:
+  tempo_data:
+  loki_data:
+  prometheus_data:

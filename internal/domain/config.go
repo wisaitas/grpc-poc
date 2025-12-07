@@ -9,4 +9,7 @@ var Config struct {
 	Postgres struct {
 		postgres.Config
 	} `envPrefix:"POSTGRES_"`
+	Otel struct {
+		Endpoint string `env:"ENDPOINT" envDefault:"localhost:4317"`
+	} `envPrefix:"OTEL_"`
 }

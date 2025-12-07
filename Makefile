@@ -12,7 +12,7 @@ rungateway:
 test:
 	curl "http://localhost:8080/api/data?id=123"
 
-proto:
+domainproto:
 	mkdir -p internal/domain/pb/gen
 	rm -f internal/domain/pb/gen/*.go
 	rm -f internal/domain/pb/*.pb.go
@@ -22,3 +22,14 @@ proto:
 		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
 		internal/domain/pb/user.proto \
 		internal/domain/pb/service.proto
+
+orchestratorproto:
+	mkdir -p internal/orchestrator/pb/gen
+	rm -f internal/orchestrator/pb/gen/*.go
+	rm -f internal/orchestrator/pb/*.pb.go
+	
+	protoc --proto_path=. \
+		--go_out=. --go_opt=module=github.com/wisaitas/grpc-poc \
+		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
+		internal/orchestrator/pb/user.proto \
+		internal/orchestrator/pb/service.proto

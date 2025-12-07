@@ -22,7 +22,6 @@ func NewService(userRepo repository.UserRepository) Service {
 }
 
 func (s *service) GetList(ctx context.Context, req *pb.GetUserListRequest) (*pb.GetUserListResponse, error) {
-	// Currently implementing basic list without pagination as BaseRepository.FindAll doesn't support it yet
 	users, err := s.userRepo.FindAll(ctx)
 	if err != nil {
 		return nil, err

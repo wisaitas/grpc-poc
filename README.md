@@ -13,3 +13,9 @@ protoc --go_out=. --go_opt=paths=source_relative \
 ```bash
 curl "http://localhost:8080/api/data?id=123"
 ```
+
+### query traceid
+
+```
+{service_name=~".+"} | json | trace_id="<trace_id>"
+```
