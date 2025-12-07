@@ -31,5 +31,5 @@ orchestratorproto:
 	protoc --proto_path=. \
 		--go_out=. --go_opt=module=github.com/wisaitas/grpc-poc \
 		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
-		internal/orchestrator/pb/user.proto \
+		internal/orchestrator/pb/auth.proto \
 		internal/orchestrator/pb/service.proto

@@ -19,5 +19,5 @@ func newUseCase(
 }
 
 func (u *useCase) Register(s *grpc.Server) {
-	u.userUseCase.Register(s)
+	u.userUseCase.RegisterUseCase(s)
 }

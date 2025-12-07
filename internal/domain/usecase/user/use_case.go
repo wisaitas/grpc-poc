@@ -28,7 +28,7 @@ func NewUserUseCase(
 	}
 }
 
-func (u *UserUseCase) Register(s *grpc.Server) {
+func (u *UserUseCase) RegisterUseCase(s *grpc.Server) {
 	pb.RegisterDomainServiceServer(s, u)
 }
 

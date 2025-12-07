@@ -1,22 +1,22 @@
 package initial
 
 import (
-	userUseCase "github.com/wisaitas/grpc-poc/internal/domain/usecase/user"
+	authUseCase "github.com/wisaitas/grpc-poc/internal/orchestrator/usecase/auth"
 	"google.golang.org/grpc"
 )
 
 type useCase struct {
-	userUseCase *userUseCase.UserUseCase
+	authUseCase *authUseCase.AuthUseCase
 }
 
 func newUseCase(
 	sdk *SDK,
 ) *useCase {
 	return &useCase{
-		userUseCase: userUseCase.NewUserUseCase(sdk.Validatorx),
+		authUseCase: authUseCase.NewAuthUseCase(sdk.Validatorx),
 	}
 }
 
 func (u *useCase) Register(s *grpc.Server) {
-	u.userUseCase.Register(s)
+	u.authUseCase.RegisterUseCase(s)
 }

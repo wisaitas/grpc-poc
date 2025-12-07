@@ -4,7 +4,7 @@ package pb;
 
 option go_package = "github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgen";
 
-import "internal/orchestrator/pb/user.proto";
+import "internal/orchestrator/pb/auth.proto";
 
 service OrchestratorService {
     rpc Register (RegisterRequest) returns (RegisterResponse);

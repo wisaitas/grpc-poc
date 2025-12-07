@@ -120,7 +120,7 @@ func (a *App) Start() {
 		log.Fatalln(err)
 	}
 
-	log.Printf("domain service listening on port %s", domain.Config.Service.Port)
+	log.Printf("%s service listening on port %s", domain.Config.Service.Name, domain.Config.Service.Port)
 	if err := a.server.Serve(listen); err != nil {
 		log.Fatalln(err)
 	}
@@ -139,5 +139,5 @@ func (a *App) Stop() {
 	}
 
 	a.server.GracefulStop()
-	log.Println("domain service stopped")
+	log.Printf("%s service stopped", domain.Config.Service.Name)
 }

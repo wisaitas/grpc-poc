@@ -5,6 +5,7 @@ import "github.com/wisaitas/grpc-poc/pkg/db/postgres"
 var Config struct {
 	Service struct {
 		Port string `env:"PORT" envDefault:"50051"`
+		Name string `env:"NAME" envDefault:"domain"`
 	} `envPrefix:"SERVICE_"`
 	Postgres struct {
 		postgres.Config

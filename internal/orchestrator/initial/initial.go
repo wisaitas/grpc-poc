@@ -8,7 +8,7 @@ import (
 	"github.com/caarlos0/env/v11"
 	"github.com/joho/godotenv"
 	"github.com/wisaitas/grpc-poc/internal/domain" // เปลี่ยนจาก router เป็น handler
-	"github.com/wisaitas/grpc-poc/pkg/db/postgres"
+	"github.com/wisaitas/grpc-poc/internal/orchestrator"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
@@ -31,7 +31,7 @@ type App struct {
 func New() *App {
 	client := newClient()
 	sdk := newSDK()
-	useCase := newUseCase(sdk, repository)
+	useCase := newUseCase(sdk)
 
 	grpcServer := grpc.NewServer()
 	useCase.Register(grpcServer)
@@ -51,18 +51,14 @@ func (a *App) Start() {
 		log.Fatalln(err)
 	}
 
-	log.Printf("domain service listening on port %s", domain.Config.Service.Port)
+	log.Printf("%s service listening on port %s", orchestrator.Config.Service.Name, orchestrator.Config.Service.Port)
 	if err := a.server.Serve(listen); err != nil {
 		log.Fatalln(err)
 	}
 }
 
 func (a *App) Stop() {
-	if err := postgres.Close(a.client.postgres); err != nil {
-		log.Fatalln(err)
-	}
-
 	a.server.GracefulStop()
 
-	log.Println("domain service stopped")
+	log.Printf("%s service stopped", orchestrator.Config.Service.Name)
 }
