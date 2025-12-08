@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package pb;
+package domain;
 
 option go_package = "github.com/wisaitas/grpc-poc/internal/domain/pb/gen;pbgen";
 

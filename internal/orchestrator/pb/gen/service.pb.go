@@ -24,17 +24,17 @@ var File_internal_orchestrator_pb_service_proto protoreflect.FileDescriptor
 
 const file_internal_orchestrator_pb_service_proto_rawDesc = "" +
 	"\n" +
-	"&internal/orchestrator/pb/service.proto\x12\x02pb\x1a#internal/orchestrator/pb/auth.proto2L\n" +
-	"\x13OrchestratorService\x125\n" +
-	"\bRegister\x12\x13.pb.RegisterRequest\x1a\x14.pb.RegisterResponseBAZ?github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgenb\x06proto3"
+	"&internal/orchestrator/pb/service.proto\x12\forchestrator\x1a#internal/orchestrator/pb/auth.proto2`\n" +
+	"\x13OrchestratorService\x12I\n" +
+	"\bRegister\x12\x1d.orchestrator.RegisterRequest\x1a\x1e.orchestrator.RegisterResponseBAZ?github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgenb\x06proto3"
 
 var file_internal_orchestrator_pb_service_proto_goTypes = []any{
-	(*RegisterRequest)(nil),  // 0: pb.RegisterRequest
-	(*RegisterResponse)(nil), // 1: pb.RegisterResponse
+	(*RegisterRequest)(nil),  // 0: orchestrator.RegisterRequest
+	(*RegisterResponse)(nil), // 1: orchestrator.RegisterResponse
 }
 var file_internal_orchestrator_pb_service_proto_depIdxs = []int32{
-	0, // 0: pb.OrchestratorService.Register:input_type -> pb.RegisterRequest
-	1, // 1: pb.OrchestratorService.Register:output_type -> pb.RegisterResponse
+	0, // 0: orchestrator.OrchestratorService.Register:input_type -> orchestrator.RegisterRequest
+	1, // 1: orchestrator.OrchestratorService.Register:output_type -> orchestrator.RegisterResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

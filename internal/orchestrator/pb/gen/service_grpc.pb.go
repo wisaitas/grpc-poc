@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrchestratorService_Register_FullMethodName = "/pb.OrchestratorService/Register"
+	OrchestratorService_Register_FullMethodName = "/orchestrator.OrchestratorService/Register"
 )
 
 // OrchestratorServiceClient is the client API for OrchestratorService service.
@@ -108,7 +108,7 @@ func _OrchestratorService_Register_Handler(srv interface{}, ctx context.Context,
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrchestratorService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "pb.OrchestratorService",
+	ServiceName: "orchestrator.OrchestratorService",
 	HandlerType: (*OrchestratorServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

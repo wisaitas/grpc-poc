@@ -24,23 +24,23 @@ var File_internal_domain_pb_service_proto protoreflect.FileDescriptor
 
 const file_internal_domain_pb_service_proto_rawDesc = "" +
 	"\n" +
-	" internal/domain/pb/service.proto\x12\x02pb\x1a\x1dinternal/domain/pb/user.proto2\x8c\x01\n" +
-	"\rDomainService\x12;\n" +
+	" internal/domain/pb/service.proto\x12\x06domain\x1a\x1dinternal/domain/pb/user.proto2\x9c\x01\n" +
+	"\rDomainService\x12C\n" +
 	"\n" +
-	"CreateUser\x12\x15.pb.CreateUserRequest\x1a\x16.pb.CreateUserResponse\x12>\n" +
-	"\vGetUserList\x12\x16.pb.GetUserListRequest\x1a\x17.pb.GetUserListResponseB;Z9github.com/wisaitas/grpc-poc/internal/domain/pb/gen;pbgenb\x06proto3"
+	"CreateUser\x12\x19.domain.CreateUserRequest\x1a\x1a.domain.CreateUserResponse\x12F\n" +
+	"\vGetUserList\x12\x1a.domain.GetUserListRequest\x1a\x1b.domain.GetUserListResponseB;Z9github.com/wisaitas/grpc-poc/internal/domain/pb/gen;pbgenb\x06proto3"
 
 var file_internal_domain_pb_service_proto_goTypes = []any{
-	(*CreateUserRequest)(nil),   // 0: pb.CreateUserRequest
-	(*GetUserListRequest)(nil),  // 1: pb.GetUserListRequest
-	(*CreateUserResponse)(nil),  // 2: pb.CreateUserResponse
-	(*GetUserListResponse)(nil), // 3: pb.GetUserListResponse
+	(*CreateUserRequest)(nil),   // 0: domain.CreateUserRequest
+	(*GetUserListRequest)(nil),  // 1: domain.GetUserListRequest
+	(*CreateUserResponse)(nil),  // 2: domain.CreateUserResponse
+	(*GetUserListResponse)(nil), // 3: domain.GetUserListResponse
 }
 var file_internal_domain_pb_service_proto_depIdxs = []int32{
-	0, // 0: pb.DomainService.CreateUser:input_type -> pb.CreateUserRequest
-	1, // 1: pb.DomainService.GetUserList:input_type -> pb.GetUserListRequest
-	2, // 2: pb.DomainService.CreateUser:output_type -> pb.CreateUserResponse
-	3, // 3: pb.DomainService.GetUserList:output_type -> pb.GetUserListResponse
+	0, // 0: domain.DomainService.CreateUser:input_type -> domain.CreateUserRequest
+	1, // 1: domain.DomainService.GetUserList:input_type -> domain.GetUserListRequest
+	2, // 2: domain.DomainService.CreateUser:output_type -> domain.CreateUserResponse
+	3, // 3: domain.DomainService.GetUserList:output_type -> domain.GetUserListResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

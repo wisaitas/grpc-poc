@@ -7,6 +7,7 @@ import (
 	"github.com/wisaitas/grpc-poc/internal/domain/repository"
 	"github.com/wisaitas/grpc-poc/internal/domain/usecase/user/create"
 	"github.com/wisaitas/grpc-poc/internal/domain/usecase/user/getlist"
+	"github.com/wisaitas/grpc-poc/pkg/otel"
 	"github.com/wisaitas/grpc-poc/pkg/validatorx"
 	"google.golang.org/grpc"
 )
@@ -23,7 +24,7 @@ func NewUserUseCase(
 	userHistoryRepo repository.UserHistoryRepository,
 ) *UserUseCase {
 	return &UserUseCase{
-		userCreateHandler:  create.NewHandler(create.NewService(userRepo, userHistoryRepo), validatorx),
+		userCreateHandler:  create.NewHandler(create.NewService(userRepo, userHistoryRepo, otel.NewLogger("user-create-service")), validatorx, otel.NewLogger("user-create-handler")),
 		userGetListHandler: getlist.NewHandler(getlist.NewService(userRepo)),
 	}
 }

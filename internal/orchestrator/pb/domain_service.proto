@@ -1,8 +1,13 @@
 syntax = "proto3";
 
-package domain;
+package orchestrator;
 
-option go_package = "github.com/wisaitas/grpc-poc/internal/domain/pb/gen;pbgen";
+option go_package = "github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgen";
+
+service DomainService {
+  rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUserList (GetUserListRequest) returns (GetUserListResponse);
+}
 
 // --- User Create ---
 message CreateUserRequest {
@@ -33,3 +38,4 @@ message CreateUserRequest {
     repeated UserData users = 1;
     int64 total = 2;
   }
+

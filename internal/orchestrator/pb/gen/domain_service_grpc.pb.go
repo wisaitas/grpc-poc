@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.32.1
-// source: internal/domain/pb/service.proto
+// source: internal/orchestrator/pb/domain_service.proto
 
 package pbgen
 
@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DomainService_CreateUser_FullMethodName  = "/domain.DomainService/CreateUser"
-	DomainService_GetUserList_FullMethodName = "/domain.DomainService/GetUserList"
+	DomainService_CreateUser_FullMethodName  = "/orchestrator.DomainService/CreateUser"
+	DomainService_GetUserList_FullMethodName = "/orchestrator.DomainService/GetUserList"
 )
 
 // DomainServiceClient is the client API for DomainService service.
@@ -142,7 +142,7 @@ func _DomainService_GetUserList_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var DomainService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "domain.DomainService",
+	ServiceName: "orchestrator.DomainService",
 	HandlerType: (*DomainServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -155,5 +155,5 @@ var DomainService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "internal/domain/pb/service.proto",
+	Metadata: "internal/orchestrator/pb/domain_service.proto",
 }

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.9
 // 	protoc        v6.32.1
-// source: internal/domain/pb/user.proto
+// source: internal/orchestrator/pb/domain_service.proto
 
 package pbgen
 
@@ -34,7 +34,7 @@ type CreateUserRequest struct {
 
 func (x *CreateUserRequest) Reset() {
 	*x = CreateUserRequest{}
-	mi := &file_internal_domain_pb_user_proto_msgTypes[0]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +46,7 @@ func (x *CreateUserRequest) String() string {
 func (*CreateUserRequest) ProtoMessage() {}
 
 func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_domain_pb_user_proto_msgTypes[0]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserRequest) Descriptor() ([]byte, []int) {
-	return file_internal_domain_pb_user_proto_rawDescGZIP(), []int{0}
+	return file_internal_orchestrator_pb_domain_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateUserRequest) GetFirstName() string {
@@ -99,7 +99,7 @@ type CreateUserResponse struct {
 
 func (x *CreateUserResponse) Reset() {
 	*x = CreateUserResponse{}
-	mi := &file_internal_domain_pb_user_proto_msgTypes[1]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -111,7 +111,7 @@ func (x *CreateUserResponse) String() string {
 func (*CreateUserResponse) ProtoMessage() {}
 
 func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_domain_pb_user_proto_msgTypes[1]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -124,7 +124,7 @@ func (x *CreateUserResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserResponse.ProtoReflect.Descriptor instead.
 func (*CreateUserResponse) Descriptor() ([]byte, []int) {
-	return file_internal_domain_pb_user_proto_rawDescGZIP(), []int{1}
+	return file_internal_orchestrator_pb_domain_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateUserResponse) GetId() string {
@@ -145,7 +145,7 @@ type GetUserListRequest struct {
 
 func (x *GetUserListRequest) Reset() {
 	*x = GetUserListRequest{}
-	mi := &file_internal_domain_pb_user_proto_msgTypes[2]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -157,7 +157,7 @@ func (x *GetUserListRequest) String() string {
 func (*GetUserListRequest) ProtoMessage() {}
 
 func (x *GetUserListRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_domain_pb_user_proto_msgTypes[2]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -170,7 +170,7 @@ func (x *GetUserListRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserListRequest.ProtoReflect.Descriptor instead.
 func (*GetUserListRequest) Descriptor() ([]byte, []int) {
-	return file_internal_domain_pb_user_proto_rawDescGZIP(), []int{2}
+	return file_internal_orchestrator_pb_domain_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetUserListRequest) GetPage() int32 {
@@ -199,7 +199,7 @@ type UserData struct {
 
 func (x *UserData) Reset() {
 	*x = UserData{}
-	mi := &file_internal_domain_pb_user_proto_msgTypes[3]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -211,7 +211,7 @@ func (x *UserData) String() string {
 func (*UserData) ProtoMessage() {}
 
 func (x *UserData) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_domain_pb_user_proto_msgTypes[3]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -224,7 +224,7 @@ func (x *UserData) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserData.ProtoReflect.Descriptor instead.
 func (*UserData) Descriptor() ([]byte, []int) {
-	return file_internal_domain_pb_user_proto_rawDescGZIP(), []int{3}
+	return file_internal_orchestrator_pb_domain_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *UserData) GetId() string {
@@ -265,7 +265,7 @@ type GetUserListResponse struct {
 
 func (x *GetUserListResponse) Reset() {
 	*x = GetUserListResponse{}
-	mi := &file_internal_domain_pb_user_proto_msgTypes[4]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -277,7 +277,7 @@ func (x *GetUserListResponse) String() string {
 func (*GetUserListResponse) ProtoMessage() {}
 
 func (x *GetUserListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_domain_pb_user_proto_msgTypes[4]
+	mi := &file_internal_orchestrator_pb_domain_service_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -290,7 +290,7 @@ func (x *GetUserListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserListResponse.ProtoReflect.Descriptor instead.
 func (*GetUserListResponse) Descriptor() ([]byte, []int) {
-	return file_internal_domain_pb_user_proto_rawDescGZIP(), []int{4}
+	return file_internal_orchestrator_pb_domain_service_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetUserListResponse) GetUsers() []*UserData {
@@ -307,11 +307,11 @@ func (x *GetUserListResponse) GetTotal() int64 {
 	return 0
 }
 
-var File_internal_domain_pb_user_proto protoreflect.FileDescriptor
+var File_internal_orchestrator_pb_domain_service_proto protoreflect.FileDescriptor
 
-const file_internal_domain_pb_user_proto_rawDesc = "" +
+const file_internal_orchestrator_pb_domain_service_proto_rawDesc = "" +
 	"\n" +
-	"\x1dinternal/domain/pb/user.proto\x12\x06domain\"\x81\x01\n" +
+	"-internal/orchestrator/pb/domain_service.proto\x12\forchestrator\"\x81\x01\n" +
 	"\x11CreateUserRequest\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x01 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -328,60 +328,68 @@ const file_internal_domain_pb_user_proto_rawDesc = "" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
 	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x14\n" +
-	"\x05email\x18\x04 \x01(\tR\x05email\"S\n" +
-	"\x13GetUserListResponse\x12&\n" +
-	"\x05users\x18\x01 \x03(\v2\x10.domain.UserDataR\x05users\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05totalB;Z9github.com/wisaitas/grpc-poc/internal/domain/pb/gen;pbgenb\x06proto3"
+	"\x05email\x18\x04 \x01(\tR\x05email\"Y\n" +
+	"\x13GetUserListResponse\x12,\n" +
+	"\x05users\x18\x01 \x03(\v2\x16.orchestrator.UserDataR\x05users\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total2\xb4\x01\n" +
+	"\rDomainService\x12O\n" +
+	"\n" +
+	"CreateUser\x12\x1f.orchestrator.CreateUserRequest\x1a .orchestrator.CreateUserResponse\x12R\n" +
+	"\vGetUserList\x12 .orchestrator.GetUserListRequest\x1a!.orchestrator.GetUserListResponseBAZ?github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgenb\x06proto3"
 
 var (
-	file_internal_domain_pb_user_proto_rawDescOnce sync.Once
-	file_internal_domain_pb_user_proto_rawDescData []byte
+	file_internal_orchestrator_pb_domain_service_proto_rawDescOnce sync.Once
+	file_internal_orchestrator_pb_domain_service_proto_rawDescData []byte
 )
 
-func file_internal_domain_pb_user_proto_rawDescGZIP() []byte {
-	file_internal_domain_pb_user_proto_rawDescOnce.Do(func() {
-		file_internal_domain_pb_user_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_domain_pb_user_proto_rawDesc), len(file_internal_domain_pb_user_proto_rawDesc)))
+func file_internal_orchestrator_pb_domain_service_proto_rawDescGZIP() []byte {
+	file_internal_orchestrator_pb_domain_service_proto_rawDescOnce.Do(func() {
+		file_internal_orchestrator_pb_domain_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_orchestrator_pb_domain_service_proto_rawDesc), len(file_internal_orchestrator_pb_domain_service_proto_rawDesc)))
 	})
-	return file_internal_domain_pb_user_proto_rawDescData
+	return file_internal_orchestrator_pb_domain_service_proto_rawDescData
 }
 
-var file_internal_domain_pb_user_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_internal_domain_pb_user_proto_goTypes = []any{
-	(*CreateUserRequest)(nil),   // 0: domain.CreateUserRequest
-	(*CreateUserResponse)(nil),  // 1: domain.CreateUserResponse
-	(*GetUserListRequest)(nil),  // 2: domain.GetUserListRequest
-	(*UserData)(nil),            // 3: domain.UserData
-	(*GetUserListResponse)(nil), // 4: domain.GetUserListResponse
+var file_internal_orchestrator_pb_domain_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_internal_orchestrator_pb_domain_service_proto_goTypes = []any{
+	(*CreateUserRequest)(nil),   // 0: orchestrator.CreateUserRequest
+	(*CreateUserResponse)(nil),  // 1: orchestrator.CreateUserResponse
+	(*GetUserListRequest)(nil),  // 2: orchestrator.GetUserListRequest
+	(*UserData)(nil),            // 3: orchestrator.UserData
+	(*GetUserListResponse)(nil), // 4: orchestrator.GetUserListResponse
 }
-var file_internal_domain_pb_user_proto_depIdxs = []int32{
-	3, // 0: domain.GetUserListResponse.users:type_name -> domain.UserData
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
+var file_internal_orchestrator_pb_domain_service_proto_depIdxs = []int32{
+	3, // 0: orchestrator.GetUserListResponse.users:type_name -> orchestrator.UserData
+	0, // 1: orchestrator.DomainService.CreateUser:input_type -> orchestrator.CreateUserRequest
+	2, // 2: orchestrator.DomainService.GetUserList:input_type -> orchestrator.GetUserListRequest
+	1, // 3: orchestrator.DomainService.CreateUser:output_type -> orchestrator.CreateUserResponse
+	4, // 4: orchestrator.DomainService.GetUserList:output_type -> orchestrator.GetUserListResponse
+	3, // [3:5] is the sub-list for method output_type
+	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_internal_domain_pb_user_proto_init() }
-func file_internal_domain_pb_user_proto_init() {
-	if File_internal_domain_pb_user_proto != nil {
+func init() { file_internal_orchestrator_pb_domain_service_proto_init() }
+func file_internal_orchestrator_pb_domain_service_proto_init() {
+	if File_internal_orchestrator_pb_domain_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_domain_pb_user_proto_rawDesc), len(file_internal_domain_pb_user_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_orchestrator_pb_domain_service_proto_rawDesc), len(file_internal_orchestrator_pb_domain_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   5,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
-		GoTypes:           file_internal_domain_pb_user_proto_goTypes,
-		DependencyIndexes: file_internal_domain_pb_user_proto_depIdxs,
-		MessageInfos:      file_internal_domain_pb_user_proto_msgTypes,
+		GoTypes:           file_internal_orchestrator_pb_domain_service_proto_goTypes,
+		DependencyIndexes: file_internal_orchestrator_pb_domain_service_proto_depIdxs,
+		MessageInfos:      file_internal_orchestrator_pb_domain_service_proto_msgTypes,
 	}.Build()
-	File_internal_domain_pb_user_proto = out.File
-	file_internal_domain_pb_user_proto_goTypes = nil
-	file_internal_domain_pb_user_proto_depIdxs = nil
+	File_internal_orchestrator_pb_domain_service_proto = out.File
+	file_internal_orchestrator_pb_domain_service_proto_goTypes = nil
+	file_internal_orchestrator_pb_domain_service_proto_depIdxs = nil
 }

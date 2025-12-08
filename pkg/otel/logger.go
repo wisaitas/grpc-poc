@@ -1,98 +1,14 @@
-package telemetry
+package otel
 
 import (
 	"context"
-	"log"
 	"log/slog"
 
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc"
-	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	otellog "go.opentelemetry.io/otel/log"
 	"go.opentelemetry.io/otel/log/global"
-	"go.opentelemetry.io/otel/propagation"
-	sdklog "go.opentelemetry.io/otel/sdk/log"
-	"go.opentelemetry.io/otel/sdk/resource"
-	sdktrace "go.opentelemetry.io/otel/sdk/trace"
-	semconv "go.opentelemetry.io/otel/semconv/v1.17.0"
 	"go.opentelemetry.io/otel/trace"
 )
 
-type Telemetry struct {
-	TracerProvider *sdktrace.TracerProvider
-	LoggerProvider *sdklog.LoggerProvider
-}
-
-func Init(ctx context.Context, serviceName, otelEndpoint string) (*Telemetry, error) {
-	res, err := resource.New(ctx,
-		resource.WithAttributes(
-			semconv.ServiceName(serviceName),
-		),
-	)
-	if err != nil {
-		return nil, err
-	}
-
-	// Initialize Tracer
-	traceExporter, err := otlptracegrpc.New(ctx,
-		otlptracegrpc.WithEndpoint(otelEndpoint),
-		otlptracegrpc.WithInsecure(),
-	)
-	if err != nil {
-		return nil, err
-	}
-
-	tp := sdktrace.NewTracerProvider(
-		sdktrace.WithBatcher(traceExporter),
-		sdktrace.WithResource(res),
-		sdktrace.WithSampler(sdktrace.AlwaysSample()),
-	)
-
-	otel.SetTracerProvider(tp)
-	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(
-		propagation.TraceContext{},
-		propagation.Baggage{},
-	))
-
-	// Initialize Logger
-	logExporter, err := otlploggrpc.New(ctx,
-		otlploggrpc.WithEndpoint(otelEndpoint),
-		otlploggrpc.WithInsecure(),
-	)
-	if err != nil {
-		return nil, err
-	}
-
-	lp := sdklog.NewLoggerProvider(
-		sdklog.WithProcessor(sdklog.NewBatchProcessor(logExporter)),
-		sdklog.WithResource(res),
-	)
-
-	global.SetLoggerProvider(lp)
-
-	log.Printf("Telemetry initialized for service: %s", serviceName)
-
-	return &Telemetry{
-		TracerProvider: tp,
-		LoggerProvider: lp,
-	}, nil
-}
-
-func (t *Telemetry) Shutdown(ctx context.Context) error {
-	if t.TracerProvider != nil {
-		if err := t.TracerProvider.Shutdown(ctx); err != nil {
-			return err
-		}
-	}
-	if t.LoggerProvider != nil {
-		if err := t.LoggerProvider.Shutdown(ctx); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
-// Logger is a simple wrapper for OpenTelemetry logging
 type Logger struct {
 	logger otellog.Logger
 	name   string
@@ -105,7 +21,6 @@ func NewLogger(name string) *Logger {
 	}
 }
 
-// getTraceInfo extracts trace_id and span_id from context
 func getTraceInfo(ctx context.Context) (traceID, spanID string) {
 	span := trace.SpanFromContext(ctx)
 	if span.SpanContext().IsValid() {
@@ -120,7 +35,6 @@ func (l *Logger) Info(ctx context.Context, msg string, attrs ...slog.Attr) {
 	record.SetBody(otellog.StringValue(msg))
 	record.SetSeverity(otellog.SeverityInfo)
 
-	// Add trace context to log
 	traceID, spanID := getTraceInfo(ctx)
 	if traceID != "" {
 		record.AddAttributes(
@@ -142,7 +56,6 @@ func (l *Logger) Error(ctx context.Context, msg string, attrs ...slog.Attr) {
 	record.SetBody(otellog.StringValue(msg))
 	record.SetSeverity(otellog.SeverityError)
 
-	// Add trace context to log
 	traceID, spanID := getTraceInfo(ctx)
 	if traceID != "" {
 		record.AddAttributes(
@@ -164,7 +77,6 @@ func (l *Logger) Warn(ctx context.Context, msg string, attrs ...slog.Attr) {
 	record.SetBody(otellog.StringValue(msg))
 	record.SetSeverity(otellog.SeverityWarn)
 
-	// Add trace context to log
 	traceID, spanID := getTraceInfo(ctx)
 	if traceID != "" {
 		record.AddAttributes(

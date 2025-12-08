@@ -11,6 +11,7 @@ var Config struct {
 		postgres.Config
 	} `envPrefix:"POSTGRES_"`
 	Otel struct {
-		Endpoint string `env:"ENDPOINT" envDefault:"localhost:4317"`
+		Host string `env:"HOST" envDefault:"localhost"`
+		Port int    `env:"PORT" envDefault:"4317"`
 	} `envPrefix:"OTEL_"`
 }

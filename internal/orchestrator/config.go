@@ -6,6 +6,11 @@ var Config struct {
 		Name string `env:"NAME" envDefault:"orchestrator"`
 	} `envPrefix:"SERVICE_"`
 	Otel struct {
-		Endpoint string `env:"ENDPOINT" envDefault:"localhost:4317"`
+		Host string `env:"HOST" envDefault:"localhost"`
+		Port int    `env:"PORT" envDefault:"4317"`
 	} `envPrefix:"OTEL_"`
+	DomainService struct {
+		Host string `env:"HOST" envDefault:"localhost"`
+		Port int    `env:"PORT" envDefault:"50051"`
+	} `envPrefix:"DOMAIN_SERVICE_"`
 }

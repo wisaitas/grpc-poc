@@ -33,3 +33,15 @@ orchestratorproto:
 		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
 		internal/orchestrator/pb/auth.proto \
 		internal/orchestrator/pb/service.proto
+
+proto:
+	@find . -name "*.proto" -exec dirname {} \; | sort -u | while read dir; do \
+		mkdir -p $$dir/gen; \
+		rm -f $$dir/gen/*.go; \
+		rm -f $$dir/*.pb.go; \
+	done
+	
+	protoc --proto_path=. \
+		--go_out=. --go_opt=module=github.com/wisaitas/grpc-poc \
+		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
+		$$(find . -name "*.proto")
