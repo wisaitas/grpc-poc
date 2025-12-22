@@ -4,7 +4,6 @@ import (
 	"context"
 	"log/slog"
 
-	domainpb "github.com/wisaitas/grpc-poc/internal/domain/pb/gen"
 	pb "github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen"
 	"github.com/wisaitas/grpc-poc/pkg/otel"
 	"go.opentelemetry.io/otel/attribute"
@@ -17,13 +16,13 @@ type Service interface {
 
 type service struct {
 	logger       *otel.Logger
-	domainClient domainpb.DomainServiceClient
+	domainClient pb.DomainServiceClient
 	tracer       trace.Tracer
 }
 
 func NewService(
 	logger *otel.Logger,
-	domainClient domainpb.DomainServiceClient,
+	domainClient pb.DomainServiceClient,
 ) Service {
 	return &service{
 		logger:       logger,
@@ -48,7 +47,7 @@ func (s *service) Register(ctx context.Context, req *RegisterRequest) (*pb.Regis
 	)
 
 	// Call domain service to create user
-	createUserReq := &domainpb.CreateUserRequest{
+	createUserReq := &pb.CreateUserRequest{
 		FirstName: req.FirstName,
 		LastName:  req.LastName,
 		Email:     req.Email,

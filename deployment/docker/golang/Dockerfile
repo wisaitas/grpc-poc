@@ -7,8 +7,9 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
-COPY pb ./pb
 COPY cmd/${SERVICE_NAME} ./cmd/${SERVICE_NAME}
+COPY internal/${SERVICE_NAME} ./internal/${SERVICE_NAME}
+COPY pkg ./pkg
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app cmd/${SERVICE_NAME}/main.go
 

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.32.1
-// source: internal/orchestrator/pb/service.proto
+// source: internal/orchestrator/pb/orchestrator_service.proto
 
 package pbgen
 
@@ -117,5 +117,5 @@ var OrchestratorService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "internal/orchestrator/pb/service.proto",
+	Metadata: "internal/orchestrator/pb/orchestrator_service.proto",
 }

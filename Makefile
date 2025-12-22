@@ -20,8 +20,7 @@ domainproto:
 	protoc --proto_path=. \
 		--go_out=. --go_opt=module=github.com/wisaitas/grpc-poc \
 		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
-		internal/domain/pb/user.proto \
-		internal/domain/pb/service.proto
+		internal/domain/pb/domain_service.proto
 
 orchestratorproto:
 	mkdir -p internal/orchestrator/pb/gen
@@ -29,10 +28,11 @@ orchestratorproto:
 	rm -f internal/orchestrator/pb/*.pb.go
 	
 	protoc --proto_path=. \
+		--proto_path=internal/orchestrator/pb \
 		--go_out=. --go_opt=module=github.com/wisaitas/grpc-poc \
 		--go-grpc_out=. --go-grpc_opt=module=github.com/wisaitas/grpc-poc \
-		internal/orchestrator/pb/auth.proto \
-		internal/orchestrator/pb/service.proto
+		internal/orchestrator/pb/orchestrator_service.proto \
+		internal/orchestrator/pb/domain_service.proto
 
 proto:
 	@find . -name "*.proto" -exec dirname {} \; | sort -u | while read dir; do \

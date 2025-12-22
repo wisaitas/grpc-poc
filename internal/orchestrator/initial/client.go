@@ -6,18 +6,15 @@ import (
 	"log"
 	"time"
 
-	pb "github.com/wisaitas/grpc-poc/internal/domain/pb/gen"
 	"github.com/wisaitas/grpc-poc/internal/orchestrator"
+	pbgen "github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen"
+	"github.com/wisaitas/grpc-poc/pkg/grpcx"
 	"github.com/wisaitas/grpc-poc/pkg/otel"
-	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 )
 
 type client struct {
-	otel         *otel.Telemetry
-	domainClient pb.DomainServiceClient
-	domainConn   *grpc.ClientConn
+	otel          *otel.Telemetry
+	domainService *grpcx.GRPCConn[pbgen.DomainServiceClient]
 }
 
 func newClient() *client {
@@ -29,18 +26,16 @@ func newClient() *client {
 		log.Fatalln(err)
 	}
 
-	domainConn, err := grpc.NewClient(
+	domainConn, err := grpcx.NewGRPCConn(
 		fmt.Sprintf("%s:%d", orchestrator.Config.DomainService.Host, orchestrator.Config.DomainService.Port),
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithStatsHandler(otelgrpc.NewClientHandler()), // เพิ่ม OTel tracing
+		pbgen.NewDomainServiceClient,
 	)
 	if err != nil {
-		log.Fatalln("failed to connect to domain service:", err)
+		log.Fatalln(err)
 	}
 
 	return &client{
-		otel:         telemetry,
-		domainClient: pb.NewDomainServiceClient(domainConn),
-		domainConn:   domainConn,
+		otel:          telemetry,
+		domainService: domainConn,
 	}
 }

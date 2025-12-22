@@ -311,7 +311,7 @@ var File_internal_orchestrator_pb_domain_service_proto protoreflect.FileDescript
 
 const file_internal_orchestrator_pb_domain_service_proto_rawDesc = "" +
 	"\n" +
-	"-internal/orchestrator/pb/domain_service.proto\x12\forchestrator\"\x81\x01\n" +
+	"-internal/orchestrator/pb/domain_service.proto\x12\x06domain\"\x81\x01\n" +
 	"\x11CreateUserRequest\x12\x1d\n" +
 	"\n" +
 	"first_name\x18\x01 \x01(\tR\tfirstName\x12\x1b\n" +
@@ -328,14 +328,14 @@ const file_internal_orchestrator_pb_domain_service_proto_rawDesc = "" +
 	"\n" +
 	"first_name\x18\x02 \x01(\tR\tfirstName\x12\x1b\n" +
 	"\tlast_name\x18\x03 \x01(\tR\blastName\x12\x14\n" +
-	"\x05email\x18\x04 \x01(\tR\x05email\"Y\n" +
-	"\x13GetUserListResponse\x12,\n" +
-	"\x05users\x18\x01 \x03(\v2\x16.orchestrator.UserDataR\x05users\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\x03R\x05total2\xb4\x01\n" +
-	"\rDomainService\x12O\n" +
+	"\x05email\x18\x04 \x01(\tR\x05email\"S\n" +
+	"\x13GetUserListResponse\x12&\n" +
+	"\x05users\x18\x01 \x03(\v2\x10.domain.UserDataR\x05users\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\x03R\x05total2\x9c\x01\n" +
+	"\rDomainService\x12C\n" +
 	"\n" +
-	"CreateUser\x12\x1f.orchestrator.CreateUserRequest\x1a .orchestrator.CreateUserResponse\x12R\n" +
-	"\vGetUserList\x12 .orchestrator.GetUserListRequest\x1a!.orchestrator.GetUserListResponseBAZ?github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgenb\x06proto3"
+	"CreateUser\x12\x19.domain.CreateUserRequest\x1a\x1a.domain.CreateUserResponse\x12F\n" +
+	"\vGetUserList\x12\x1a.domain.GetUserListRequest\x1a\x1b.domain.GetUserListResponseBAZ?github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgenb\x06proto3"
 
 var (
 	file_internal_orchestrator_pb_domain_service_proto_rawDescOnce sync.Once
@@ -351,18 +351,18 @@ func file_internal_orchestrator_pb_domain_service_proto_rawDescGZIP() []byte {
 
 var file_internal_orchestrator_pb_domain_service_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_internal_orchestrator_pb_domain_service_proto_goTypes = []any{
-	(*CreateUserRequest)(nil),   // 0: orchestrator.CreateUserRequest
-	(*CreateUserResponse)(nil),  // 1: orchestrator.CreateUserResponse
-	(*GetUserListRequest)(nil),  // 2: orchestrator.GetUserListRequest
-	(*UserData)(nil),            // 3: orchestrator.UserData
-	(*GetUserListResponse)(nil), // 4: orchestrator.GetUserListResponse
+	(*CreateUserRequest)(nil),   // 0: domain.CreateUserRequest
+	(*CreateUserResponse)(nil),  // 1: domain.CreateUserResponse
+	(*GetUserListRequest)(nil),  // 2: domain.GetUserListRequest
+	(*UserData)(nil),            // 3: domain.UserData
+	(*GetUserListResponse)(nil), // 4: domain.GetUserListResponse
 }
 var file_internal_orchestrator_pb_domain_service_proto_depIdxs = []int32{
-	3, // 0: orchestrator.GetUserListResponse.users:type_name -> orchestrator.UserData
-	0, // 1: orchestrator.DomainService.CreateUser:input_type -> orchestrator.CreateUserRequest
-	2, // 2: orchestrator.DomainService.GetUserList:input_type -> orchestrator.GetUserListRequest
-	1, // 3: orchestrator.DomainService.CreateUser:output_type -> orchestrator.CreateUserResponse
-	4, // 4: orchestrator.DomainService.GetUserList:output_type -> orchestrator.GetUserListResponse
+	3, // 0: domain.GetUserListResponse.users:type_name -> domain.UserData
+	0, // 1: domain.DomainService.CreateUser:input_type -> domain.CreateUserRequest
+	2, // 2: domain.DomainService.GetUserList:input_type -> domain.GetUserListRequest
+	1, // 3: domain.DomainService.CreateUser:output_type -> domain.CreateUserResponse
+	4, // 4: domain.DomainService.GetUserList:output_type -> domain.GetUserListResponse
 	3, // [3:5] is the sub-list for method output_type
 	1, // [1:3] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

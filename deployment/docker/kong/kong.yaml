@@ -1,0 +1,18 @@
+_format_version: "3.0"
+
+services:
+  - name: orchestrator-service
+    protocol: grpc
+    host: orchestrator
+    port: 50052
+    routes:
+      - name: orchestrator-route
+        protocols:
+          - http
+          - https
+        paths:
+          - /api/v1
+    plugins:
+      - name: grpc-gateway
+        config:
+          proto: /etc/kong/proto/orchestrator_service.proto

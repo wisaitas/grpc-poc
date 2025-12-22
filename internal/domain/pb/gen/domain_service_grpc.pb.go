@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v6.32.1
-// source: internal/domain/pb/service.proto
+// source: internal/domain/pb/domain_service.proto
 
 package pbgen
 
@@ -155,5 +155,5 @@ var DomainService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "internal/domain/pb/service.proto",
+	Metadata: "internal/domain/pb/domain_service.proto",
 }

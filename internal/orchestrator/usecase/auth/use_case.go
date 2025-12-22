@@ -3,7 +3,6 @@ package auth
 import (
 	"context"
 
-	domainpb "github.com/wisaitas/grpc-poc/internal/domain/pb/gen"
 	pb "github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen"
 	"github.com/wisaitas/grpc-poc/internal/orchestrator/usecase/auth/register"
 	"github.com/wisaitas/grpc-poc/pkg/otel"
@@ -18,7 +17,7 @@ type AuthUseCase struct {
 
 func NewAuthUseCase(
 	validatorx validatorx.Validator,
-	domainClient domainpb.DomainServiceClient,
+	domainClient pb.DomainServiceClient,
 ) *AuthUseCase {
 	return &AuthUseCase{
 		registerHandler: register.NewHandler(

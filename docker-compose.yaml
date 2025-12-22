@@ -88,39 +88,75 @@ services:
       - "9090:9090"
     networks:
       - grpc-network
-
-  # domain:
-  #   build:
-  #     context: .
-  #     dockerfile: deployment/docker/golang/Dockerfile
-  #     args:
-  #       SERVICE_NAME: domain
-  #   ports:
-  #     - "50051:50051"
-  #   networks:
-  #     - grpc-network
   
-  # gateway:
-  #   build:
-  #     context: .
-  #     dockerfile: deployment/docker/golang/Dockerfile
-  #     args:
-  #       SERVICE_NAME: gateway
-  #   ports:
-  #     - "8080:8080"
-  #   networks:
-  #     - grpc-network
+  kong:
+    image: kong:latest
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /etc/kong/kong.yaml
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_ADMIN_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ERROR_LOG: /dev/stderr
+      KONG_ADMIN_ERROR_LOG: /dev/stderr
+    volumes:
+      - ./deployment/docker/kong/kong.yaml:/etc/kong/kong.yaml
+      - ./internal/orchestrator/pb:/etc/kong/proto
+    ports:
+      - "8000:8000"   # HTTP Proxy
+      - "8443:8443"   # HTTPS Proxy
+      - "8001:8001"   # Admin API
+    networks:
+      - grpc-network
+    depends_on:
+      - orchestrator
+
+  domain:
+    build:
+      context: .
+      dockerfile: deployment/docker/golang/Dockerfile
+      args:
+        SERVICE_NAME: domain
+    ports:
+      - "50051:50051"
+    environment:
+      - SERVICE_PORT=50051
+      - SERVICE_NAME=domain
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_SSL_MODE=disable
+      - POSTGRES_MAX_IDLE_CONNS=10
+      - POSTGRES_MAX_OPEN_CONNS=100
+      - POSTGRES_CONN_MAX_LIFETIME=1h
+      - OTEL_HOST=otel-collector
+      - OTEL_PORT=4317
+    networks:
+      - grpc-network
+    depends_on:
+      postgres:
+        condition: service_healthy
       
-  # orchestrator:
-  #   build:
-  #     context: .
-  #     dockerfile: deployment/docker/golang/Dockerfile
-  #     args:
-  #       SERVICE_NAME: orchestrator
-  #   ports:
-  #     - "50052:50052"
-  #   networks:
-  #     - grpc-network
+  orchestrator:
+    build:
+      context: .
+      dockerfile: deployment/docker/golang/Dockerfile
+      args:
+        SERVICE_NAME: orchestrator
+    ports:
+      - "50052:50052"
+    environment:
+      - SERVICE_PORT=50052
+      - SERVICE_NAME=orchestrator
+      - DOMAIN_SERVICE_HOST=domain
+      - DOMAIN_SERVICE_PORT=50051
+      - OTEL_HOST=otel-collector
+      - OTEL_PORT=4317
+    networks:
+      - grpc-network
+    depends_on:
+      - domain
 
 networks:
   grpc-network:

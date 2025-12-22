@@ -32,7 +32,7 @@ type App struct {
 func New() *App {
 	client := newClient()
 	sdk := newSDK()
-	useCase := newUseCase(sdk, client.domainClient)
+	useCase := newUseCase(sdk, client.domainService)
 
 	grpcServer := grpc.NewServer(
 		grpc.StatsHandler(otelgrpc.NewServerHandler()),
@@ -66,7 +66,7 @@ func (a *App) Stop() {
 		}
 	}
 
-	if err := a.client.domainConn.Close(); err != nil {
+	if err := a.client.domainService.Close(); err != nil {
 		log.Fatalln(err)
 	}
 

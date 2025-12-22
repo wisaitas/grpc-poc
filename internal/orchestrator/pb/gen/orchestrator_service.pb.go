@@ -2,11 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.9
 // 	protoc        v6.32.1
-// source: internal/orchestrator/pb/auth.proto
+// source: internal/orchestrator/pb/orchestrator_service.proto
 
 package pbgen
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -34,7 +35,7 @@ type RegisterRequest struct {
 
 func (x *RegisterRequest) Reset() {
 	*x = RegisterRequest{}
-	mi := &file_internal_orchestrator_pb_auth_proto_msgTypes[0]
+	mi := &file_internal_orchestrator_pb_orchestrator_service_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +47,7 @@ func (x *RegisterRequest) String() string {
 func (*RegisterRequest) ProtoMessage() {}
 
 func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_orchestrator_pb_auth_proto_msgTypes[0]
+	mi := &file_internal_orchestrator_pb_orchestrator_service_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +60,7 @@ func (x *RegisterRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterRequest.ProtoReflect.Descriptor instead.
 func (*RegisterRequest) Descriptor() ([]byte, []int) {
-	return file_internal_orchestrator_pb_auth_proto_rawDescGZIP(), []int{0}
+	return file_internal_orchestrator_pb_orchestrator_service_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RegisterRequest) GetEmail() string {
@@ -106,7 +107,7 @@ type RegisterResponse struct {
 
 func (x *RegisterResponse) Reset() {
 	*x = RegisterResponse{}
-	mi := &file_internal_orchestrator_pb_auth_proto_msgTypes[1]
+	mi := &file_internal_orchestrator_pb_orchestrator_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -118,7 +119,7 @@ func (x *RegisterResponse) String() string {
 func (*RegisterResponse) ProtoMessage() {}
 
 func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_internal_orchestrator_pb_auth_proto_msgTypes[1]
+	mi := &file_internal_orchestrator_pb_orchestrator_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -131,7 +132,7 @@ func (x *RegisterResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterResponse.ProtoReflect.Descriptor instead.
 func (*RegisterResponse) Descriptor() ([]byte, []int) {
-	return file_internal_orchestrator_pb_auth_proto_rawDescGZIP(), []int{1}
+	return file_internal_orchestrator_pb_orchestrator_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *RegisterResponse) GetToken() string {
@@ -141,11 +142,11 @@ func (x *RegisterResponse) GetToken() string {
 	return ""
 }
 
-var File_internal_orchestrator_pb_auth_proto protoreflect.FileDescriptor
+var File_internal_orchestrator_pb_orchestrator_service_proto protoreflect.FileDescriptor
 
-const file_internal_orchestrator_pb_auth_proto_rawDesc = "" +
+const file_internal_orchestrator_pb_orchestrator_service_proto_rawDesc = "" +
 	"\n" +
-	"#internal/orchestrator/pb/auth.proto\x12\forchestrator\"\xaa\x01\n" +
+	"3internal/orchestrator/pb/orchestrator_service.proto\x12\forchestrator\x1a\x1cgoogle/api/annotations.proto\"\xaa\x01\n" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1d\n" +
 	"\n" +
@@ -154,53 +155,57 @@ const file_internal_orchestrator_pb_auth_proto_rawDesc = "" +
 	"\bpassword\x18\x04 \x01(\tR\bpassword\x12)\n" +
 	"\x10confirm_password\x18\x05 \x01(\tR\x0fconfirmPassword\"(\n" +
 	"\x10RegisterResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05tokenBAZ?github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgenb\x06proto3"
+	"\x05token\x18\x01 \x01(\tR\x05token2\x82\x01\n" +
+	"\x13OrchestratorService\x12k\n" +
+	"\bRegister\x12\x1d.orchestrator.RegisterRequest\x1a\x1e.orchestrator.RegisterResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*\"\x15/api/v1/auth/registerBAZ?github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen;pbgenb\x06proto3"
 
 var (
-	file_internal_orchestrator_pb_auth_proto_rawDescOnce sync.Once
-	file_internal_orchestrator_pb_auth_proto_rawDescData []byte
+	file_internal_orchestrator_pb_orchestrator_service_proto_rawDescOnce sync.Once
+	file_internal_orchestrator_pb_orchestrator_service_proto_rawDescData []byte
 )
 
-func file_internal_orchestrator_pb_auth_proto_rawDescGZIP() []byte {
-	file_internal_orchestrator_pb_auth_proto_rawDescOnce.Do(func() {
-		file_internal_orchestrator_pb_auth_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_orchestrator_pb_auth_proto_rawDesc), len(file_internal_orchestrator_pb_auth_proto_rawDesc)))
+func file_internal_orchestrator_pb_orchestrator_service_proto_rawDescGZIP() []byte {
+	file_internal_orchestrator_pb_orchestrator_service_proto_rawDescOnce.Do(func() {
+		file_internal_orchestrator_pb_orchestrator_service_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_internal_orchestrator_pb_orchestrator_service_proto_rawDesc), len(file_internal_orchestrator_pb_orchestrator_service_proto_rawDesc)))
 	})
-	return file_internal_orchestrator_pb_auth_proto_rawDescData
+	return file_internal_orchestrator_pb_orchestrator_service_proto_rawDescData
 }
 
-var file_internal_orchestrator_pb_auth_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_internal_orchestrator_pb_auth_proto_goTypes = []any{
+var file_internal_orchestrator_pb_orchestrator_service_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_internal_orchestrator_pb_orchestrator_service_proto_goTypes = []any{
 	(*RegisterRequest)(nil),  // 0: orchestrator.RegisterRequest
 	(*RegisterResponse)(nil), // 1: orchestrator.RegisterResponse
 }
-var file_internal_orchestrator_pb_auth_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
+var file_internal_orchestrator_pb_orchestrator_service_proto_depIdxs = []int32{
+	0, // 0: orchestrator.OrchestratorService.Register:input_type -> orchestrator.RegisterRequest
+	1, // 1: orchestrator.OrchestratorService.Register:output_type -> orchestrator.RegisterResponse
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_internal_orchestrator_pb_auth_proto_init() }
-func file_internal_orchestrator_pb_auth_proto_init() {
-	if File_internal_orchestrator_pb_auth_proto != nil {
+func init() { file_internal_orchestrator_pb_orchestrator_service_proto_init() }
+func file_internal_orchestrator_pb_orchestrator_service_proto_init() {
+	if File_internal_orchestrator_pb_orchestrator_service_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_orchestrator_pb_auth_proto_rawDesc), len(file_internal_orchestrator_pb_auth_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_internal_orchestrator_pb_orchestrator_service_proto_rawDesc), len(file_internal_orchestrator_pb_orchestrator_service_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
-			NumServices:   0,
+			NumServices:   1,
 		},
-		GoTypes:           file_internal_orchestrator_pb_auth_proto_goTypes,
-		DependencyIndexes: file_internal_orchestrator_pb_auth_proto_depIdxs,
-		MessageInfos:      file_internal_orchestrator_pb_auth_proto_msgTypes,
+		GoTypes:           file_internal_orchestrator_pb_orchestrator_service_proto_goTypes,
+		DependencyIndexes: file_internal_orchestrator_pb_orchestrator_service_proto_depIdxs,
+		MessageInfos:      file_internal_orchestrator_pb_orchestrator_service_proto_msgTypes,
 	}.Build()
-	File_internal_orchestrator_pb_auth_proto = out.File
-	file_internal_orchestrator_pb_auth_proto_goTypes = nil
-	file_internal_orchestrator_pb_auth_proto_depIdxs = nil
+	File_internal_orchestrator_pb_orchestrator_service_proto = out.File
+	file_internal_orchestrator_pb_orchestrator_service_proto_goTypes = nil
+	file_internal_orchestrator_pb_orchestrator_service_proto_depIdxs = nil
 }

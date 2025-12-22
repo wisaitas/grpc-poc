@@ -1,9 +1,10 @@
 package initial
 
 import (
-	domainpb "github.com/wisaitas/grpc-poc/internal/domain/pb/gen"
+	pbgen "github.com/wisaitas/grpc-poc/internal/orchestrator/pb/gen"
 	"github.com/wisaitas/grpc-poc/internal/orchestrator/usecase/auth"
 	authUseCase "github.com/wisaitas/grpc-poc/internal/orchestrator/usecase/auth"
+	"github.com/wisaitas/grpc-poc/pkg/grpcx"
 	"google.golang.org/grpc"
 )
 
@@ -11,9 +12,12 @@ type useCase struct {
 	authUseCase *authUseCase.AuthUseCase
 }
 
-func newUseCase(sdk *SDK, domainClient domainpb.DomainServiceClient) *useCase {
+func newUseCase(
+	sdk *SDK,
+	domainService *grpcx.GRPCConn[pbgen.DomainServiceClient],
+) *useCase {
 	return &useCase{
-		authUseCase: auth.NewAuthUseCase(sdk.Validatorx, domainClient),
+		authUseCase: auth.NewAuthUseCase(sdk.Validatorx, domainService.Client),
 	}
 }
 
