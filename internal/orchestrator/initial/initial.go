@@ -60,6 +60,8 @@ func (a *App) Start() {
 }
 
 func (a *App) Stop() {
+	a.server.GracefulStop()
+
 	if a.client.otel != nil {
 		if err := a.client.otel.Shutdown(context.Background()); err != nil {
 			log.Fatalln(err)
@@ -69,8 +71,6 @@ func (a *App) Stop() {
 	if err := a.client.domainService.Close(); err != nil {
 		log.Fatalln(err)
 	}
-
-	a.server.GracefulStop()
 
 	log.Printf("%s service stopped", orchestrator.Config.Service.Name)
 }

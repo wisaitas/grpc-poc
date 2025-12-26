@@ -30,6 +30,11 @@ services:
       - "8889:8889"   # Prometheus metrics exporter
     networks:
       - grpc-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:13133/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     depends_on:
       - tempo
       - loki
@@ -47,6 +52,11 @@ services:
       - "4317"        # otlp grpc (internal)
     networks:
       - grpc-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3200/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # Loki - สำหรับเก็บ logs
   loki:
@@ -60,6 +70,11 @@ services:
       - "3100:3100"
     networks:
       - grpc-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3100/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # Grafana - สำหรับ visualization
   grafana:
@@ -74,6 +89,11 @@ services:
       - "3000:3000"
     networks:
       - grpc-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     depends_on:
       - tempo
       - loki
@@ -88,6 +108,11 @@ services:
       - "9090:9090"
     networks:
       - grpc-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:9090/-/healthy"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
   
   kong:
     image: kong:latest
@@ -107,6 +132,11 @@ services:
       - "8001:8001"   # Admin API
     networks:
       - grpc-network
+    healthcheck:
+      test: ["CMD", "kong", "health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     depends_on:
       - orchestrator
 
